@@ -12,11 +12,15 @@ human activity recognition on the
 ambient audio and humidity from 20 participants over 16 activity classes
 including a Null class — under a leakage-free, participant-grouped protocol.
 
-This repository extends the accompanying
-[conference paper repository](https://github.com/AhmedMohamady98/A-Comparison-of-Fusion-Techniques-for-Multi-Modal-Human-Activity-Recognition-on-the-HARMES-Dataset)
-with the analyses that appear only in the thesis: gate-activation
-interpretability, the modality ablation, calibration, top-k accuracy,
-per-participant consistency, hardest-window analysis and the model ensemble.
+The core comparison was published as a full paper at **iWOAR 2026**:
+*A Comparison of Fusion Techniques for Multi-Modal Human Activity Recognition
+on the HARMES Dataset*, Mohamady, Burchard and Van Laerhoven
+([arXiv:2606.27886](https://arxiv.org/abs/2606.27886),
+[code](https://github.com/AhmedMohamady98/A-Comparison-of-Fusion-Techniques-for-Multi-Modal-Human-Activity-Recognition-on-the-HARMES-Dataset)).
+This repository adds the analyses that appear only in the thesis:
+gate-activation interpretability, the modality ablation, calibration,
+top-k accuracy, per-participant consistency, hardest-window analysis and the
+model ensemble.
 
 ## Results
 
