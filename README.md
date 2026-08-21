@@ -17,9 +17,9 @@ The core comparison was published as a full paper at **iWOAR 2026**:
 on the HARMES Dataset*, Mohamady, Burchard and Van Laerhoven
 ([arXiv:2606.27886](https://arxiv.org/abs/2606.27886),
 [code](https://github.com/AhmedMohamady98/A-Comparison-of-Fusion-Techniques-for-Multi-Modal-Human-Activity-Recognition-on-the-HARMES-Dataset)).
-This repository adds the analyses that appear only in the thesis:
-gate-activation interpretability, the modality ablation, calibration,
-top-k accuracy, per-participant consistency, hardest-window analysis and the
+This repository adds the analyses the paper had no room for, and which the
+thesis carries in full: gate-activation interpretability, the modality
+ablation, calibration, top-k accuracy, per-participant consistency and a
 model ensemble.
 
 ## Results
