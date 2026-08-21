@@ -1,0 +1,11 @@
+model,ece,mean_confidence_correct,mean_confidence_wrong
+AST,0.0553,0.8821,0.6596
+CMA,0.0618,0.9290,0.7164
+MBT,0.0634,0.9219,0.7108
+CLS Transformer,0.0676,0.9343,0.7286
+Late Fusion,0.0684,0.9441,0.7471
+TSMixer,0.0725,0.3350,0.2689
+LMF,0.0807,0.9093,0.7060
+Decision Fusion,0.0817,0.9043,0.7175
+TinyHAR,0.0841,0.8691,0.6441
+GMF,0.0882,0.9644,0.8068

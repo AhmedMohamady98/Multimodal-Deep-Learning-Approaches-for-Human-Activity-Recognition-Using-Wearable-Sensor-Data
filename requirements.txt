@@ -1,0 +1,10 @@
+torch
+numpy
+scikit-learn
+transformers          # for AST via HuggingFace
+torchaudio            # for AST audio preprocessing
+pytest
+wandb
+pandas
+matplotlib
+seaborn

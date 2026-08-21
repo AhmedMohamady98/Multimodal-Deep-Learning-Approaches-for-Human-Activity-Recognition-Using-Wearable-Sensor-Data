@@ -1,0 +1,56 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite the thesis."
+title: "Multimodal Deep Learning Approaches for Human Activity Recognition Using Wearable Sensor Data"
+authors:
+  - family-names: Mohamady
+    given-names: Ahmed
+year: 2026
+license: MIT
+keywords:
+  - human activity recognition
+  - multimodal fusion
+  - wearable sensors
+  - gated multimodal fusion
+  - HARMES
+preferred-citation:
+  type: thesis
+  title: "Multimodal Deep Learning Approaches for Human Activity Recognition Using Wearable Sensor Data"
+  authors:
+    - family-names: Mohamady
+      given-names: Ahmed
+  year: 2026
+  thesis-type: "Master's thesis"
+  institution:
+    name: "University of Siegen"
+references:
+  - type: article
+    title: "A Comparison of Fusion Techniques for Multi-Modal Human Activity Recognition on the HARMES Dataset"
+    authors:
+      - family-names: Mohamady
+        given-names: Ahmed
+      - family-names: Burchard
+        given-names: Robin
+      - family-names: Van Laerhoven
+        given-names: Kristof
+    year: 2026
+    journal: "arXiv preprint arXiv:2606.27886"
+    doi: "10.48550/arXiv.2606.27886"
+    url: "https://arxiv.org/abs/2606.27886"
+    notes: "Companion paper; this thesis extends its analyses."
+  - type: data
+    title: "HARMES: A Multi-Modal Dataset for Wearable Human Activity Recognition with Motion, Environmental Sensing and Sound"
+    authors:
+      - family-names: Burchard
+        given-names: Robin
+      - family-names: Brückner
+        given-names: Pascal-André
+      - family-names: Bock
+        given-names: Marius
+      - family-names: Gall
+        given-names: Juergen
+      - family-names: Van Laerhoven
+        given-names: Kristof
+    year: 2026
+    doi: "10.5281/zenodo.19425719"
+    url: "https://zenodo.org/records/19425719"
+    notes: "Dataset used throughout, CC BY 4.0."

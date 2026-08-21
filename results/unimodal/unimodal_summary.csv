@@ -1,0 +1,4 @@
+model,modality,mean_f1,std_f1,mean_acc,std_acc
+AST,Audio,0.7338,0.0162,0.7771,0.0159
+TinyHAR,IMU,0.6957,0.0290,0.7242,0.0329
+TSMixer,Humidity,0.0882,0.0037,0.2101,0.0030

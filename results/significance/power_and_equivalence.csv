@@ -1,0 +1,2 @@
+observed_dz,observed_diff,mde_dz_80pct,mde_f1_80pct,n_for_80pct_power,n_for_90pct_power,tost_p_0.010,tost_p_0.020,tost_p_0.030,tost_p_0.050,one_sided_t_p,one_sided_wilcoxon_p
+0.463803,0.011195,0.661000,0.015955,39,51,0.586431,0.059637,0.001241,0.000000,0.025947,0.041275

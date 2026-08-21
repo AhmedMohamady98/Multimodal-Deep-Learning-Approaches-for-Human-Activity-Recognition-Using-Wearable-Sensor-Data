@@ -1,0 +1,17 @@
+activity,F1_best,F1_worst,delta
+Disinfecting hands,0.6957,0.0000,+0.6957
+Washing dishes,0.9730,0.5301,+0.4429
+Floor cleaning,0.9652,0.6331,+0.3321
+Watering plants,0.8837,0.6500,+0.2337
+Cleaning table,0.9333,0.7013,+0.2320
+Cleaning out dishwasher,0.6538,0.4694,+0.1845
+Cutting vegetables,0.9913,0.8099,+0.1814
+Putting away dishes,0.8367,0.6724,+0.1643
+Drinking,0.8889,0.7273,+0.1616
+Brushing Teeth,0.9706,0.8742,+0.0964
+Washing hands,0.9630,0.8679,+0.0950
+Null,0.8458,0.7787,+0.0671
+Making tea,0.9489,0.8995,+0.0494
+Vacuum cleaning,0.9899,0.9694,+0.0205
+Window cleaning,0.9266,0.9130,+0.0135
+Apply hand cream,0.6667,0.7179,-0.0513

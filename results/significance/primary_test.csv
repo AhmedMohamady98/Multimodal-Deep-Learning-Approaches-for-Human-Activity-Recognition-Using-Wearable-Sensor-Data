@@ -1,0 +1,2 @@
+a,b,n,mean_a,mean_b,mean_diff,median_diff,sd_diff,n_pos,n_neg,n_tie,shapiro_W,shapiro_p,normal,t,t_p,cohen_dz,ci_lo,ci_hi,boot_lo,boot_hi,W,wilcoxon_p,rank_biserial,sign_p
+GMF,Late Fusion,20,0.822562,0.811367,0.011195,0.007508,0.024137,12,8,0,0.962347,0.591722,True,2.074190,0.051894,0.463803,-0.000102,0.022492,0.001157,0.021530,58.000000,0.082550,0.447619,0.503445
