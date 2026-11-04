@@ -14,14 +14,14 @@
 # ---
 
 # %% [markdown]
-# # CLS Transformer — v3 (per-method deep dive)
+# # CLS Transformer — per-method deep dive
 #
-# All v3 metrics for CLS Transformer: per-fold F1, per-class F1, pooled
+# All metrics for CLS Transformer: per-fold F1, per-class F1, pooled
 # confusion matrix, per-fold confusion matrices, top confused class pairs.
-# Outputs go to `results/v3/10s/fusion/cls_transformer/`.
+# Outputs go to `results/fusion/cls_transformer/`.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 import csv
 
 DISPLAY_NAME = "CLS Transformer"

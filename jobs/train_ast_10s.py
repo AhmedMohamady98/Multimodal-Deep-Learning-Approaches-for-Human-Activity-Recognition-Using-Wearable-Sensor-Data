@@ -10,7 +10,7 @@ Run via separate SLURM jobs per fold:
   sbatch jobs/train_ast_10s_fold1.sh
   sbatch jobs/train_ast_10s_fold2.sh
 
-Results saved to: results/v3/10s/unimodal_models/
+Results saved to: results/unimodal_models/
 """
 
 import os
@@ -25,7 +25,7 @@ from src.encoders.ast.model import ASTEncoder
 from src.training.trainer import train_model
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-RESULTS_DIR = "results/v3/10s/unimodal_models"
+RESULTS_DIR = "results/unimodal_models"
 BATCH_SIZE  = 32   # same as 2s/8s — AST spectrogram shape is always 1024 frames
 EMBED_DIM   = 128
 NUM_WORKERS = 4

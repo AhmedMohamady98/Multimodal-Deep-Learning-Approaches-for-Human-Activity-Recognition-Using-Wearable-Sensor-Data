@@ -14,9 +14,9 @@ For each model × fold × participant, saves:
   - prob_0 … prob_15   : float32 softmax probabilities (16 classes)
 
 Outputs:
-  results/v3/10s/predictions/
+  results/predictions/
   ├── {model}_fold{i}_raw_preds.csv   ← one file per model × fold
-  └── all_models_raw_predictions.csv  ← master combined file
+  └── all_models_raw_predictions.csv.gz  ← master combined file
 
 Usage:
   PYTHONPATH=. python jobs/save_raw_predictions.py
@@ -36,9 +36,9 @@ from torch.utils.data import DataLoader
 # ---------------------------------------------------------------------------
 ROOT       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-MODELS_DIR          = os.path.join(ROOT, "results", "v3", "10s", "models")
-UNIMODAL_MODELS_DIR = os.path.join(ROOT, "results", "v3", "10s", "unimodal_models")
-OUT_DIR    = os.path.join(ROOT, "results", "v3", "10s", "predictions")
+MODELS_DIR          = os.path.join(ROOT, "results", "models")
+UNIMODAL_MODELS_DIR = os.path.join(ROOT, "results", "unimodal_models")
+OUT_DIR    = os.path.join(ROOT, "results", "predictions")
 
 WINDOW_SIZE = 500
 STEP        = 250
@@ -245,7 +245,7 @@ def main():
         "late_fusion", "gmf", "mbt", "cma", "lmf", "decision_fusion", "cls_transformer",
     ]
 
-    master_path = os.path.join(OUT_DIR, "all_models_raw_predictions.csv")
+    master_path = os.path.join(OUT_DIR, "all_models_raw_predictions.csv.gz")
     master_fh   = open(master_path, "w", newline="")
     master_w    = csv.writer(master_fh)
     master_w.writerow(HEADER)

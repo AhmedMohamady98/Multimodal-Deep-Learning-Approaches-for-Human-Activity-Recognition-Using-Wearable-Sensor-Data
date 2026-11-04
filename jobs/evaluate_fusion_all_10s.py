@@ -1,15 +1,15 @@
 """
-Fusion evaluation — all 4 methods, 10s windows, v2 (authoritative).
+Fusion evaluation — Late Fusion, GMF, MBT and CMA, 10s windows.
 
 Evaluates Late Fusion, GMF, MBT, and CMA across 3 cross-validation folds.
 Loads best checkpoints, runs inference, generates per-method and cross-method
 figures, writes tables, and saves JSON results.
 
-Unimodal baselines are loaded from results/v3/10s/unimodal_results.json
+Unimodal baselines are loaded from results/unimodal_results.json
 to produce comparison and lift figures.
 
 Output structure:
-    results/v3/10s/figures/
+    results/figures/
     ├── late_fusion/
     │   ├── training_curves.png
     │   ├── per_fold_f1.png
@@ -36,7 +36,7 @@ Output structure:
     ├── fusion_per_class_all_methods.png
     └── fusion_leaderboard.png
 
-    results/v3/10s/
+    results/
     ├── late_fusion_results.json
     ├── gmf_results.json
     ├── mbt_results.json
@@ -71,10 +71,10 @@ SCRIPT_DIR   = os.path.dirname(os.path.abspath(__file__))
 ROOT         = os.path.dirname(SCRIPT_DIR)
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-MODELS_DIR    = os.path.join(ROOT, "results", "v3", "10s", "models")
-FIGURES_BASE  = os.path.join(ROOT, "results", "v3", "10s", "figures")
-RESULTS_BASE  = os.path.join(ROOT, "results", "v3", "10s")
-UNIMODAL_JSON = os.path.join(ROOT, "results", "v3", "10s", "unimodal_results.json")
+MODELS_DIR    = os.path.join(ROOT, "results", "models")
+FIGURES_BASE  = os.path.join(ROOT, "results", "figures")
+RESULTS_BASE  = os.path.join(ROOT, "results")
+UNIMODAL_JSON = os.path.join(ROOT, "results", "unimodal_results.json")
 LOGS_DIR      = os.path.join(ROOT, "logs")
 
 WINDOW_SIZE = 500

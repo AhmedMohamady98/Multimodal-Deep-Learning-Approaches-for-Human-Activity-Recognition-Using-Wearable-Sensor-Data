@@ -1,7 +1,7 @@
 """
 Train all 3 unimodal baselines on the full 20-participant dataset.
 3-fold group cross-validation (~6-7 participants per fold).
-Best model weights saved to results/v3/10s/unimodal_models/.
+Best model weights saved to results/unimodal_models/.
 
 Run via: sbatch jobs/train_unimodal_full.sh
 """
@@ -20,7 +20,7 @@ from src.encoders.ast.model import ASTEncoder
 from src.training.trainer import train_model
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-RESULTS_DIR     = "results/v3/10s/unimodal_models"
+RESULTS_DIR     = "results/unimodal_models"
 PARTICIPANTS    = list(range(1, 21))   # all 20
 BATCH_SIZE      = 64
 EPOCHS_DEFAULT  = 50   # TinyHAR, TSMixer

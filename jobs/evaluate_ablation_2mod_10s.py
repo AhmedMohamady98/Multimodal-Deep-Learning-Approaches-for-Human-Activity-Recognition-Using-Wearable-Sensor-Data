@@ -7,7 +7,7 @@ and produces per-method figures + cross-method ablation comparison figures
 that directly quantify the humidity contribution.
 
 Output structure:
-    results/v3/10s/ablation/
+    results/ablation/
     ├── late_fusion/
     │   ├── per_fold_f1.png
     │   ├── confusion_matrix.png
@@ -63,9 +63,9 @@ SCRIPT_DIR   = os.path.dirname(os.path.abspath(__file__))
 ROOT         = os.path.dirname(SCRIPT_DIR)
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-MODELS_DIR   = os.path.join(ROOT, "results", "v3", "10s", "models")
-OUT_DIR      = os.path.join(ROOT, "results", "v3", "10s", "ablation")
-FUSION_JSON  = os.path.join(ROOT, "results", "v3", "10s", "fusion_results.json")
+MODELS_DIR   = os.path.join(ROOT, "results", "models")
+OUT_DIR      = os.path.join(ROOT, "results", "ablation")
+FUSION_JSON  = os.path.join(ROOT, "results", "fusion_results.json")
 
 WINDOW_SIZE = 500
 STEP        = 250

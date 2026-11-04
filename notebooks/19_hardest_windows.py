@@ -23,10 +23,10 @@
 #   - which participants contribute most
 #   - which classes the hard windows get predicted as
 #
-# Outputs → `results/v3/10s/hardest_windows/`.
+# Outputs → `results/hardest_windows/`.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 import pandas as pd
 import csv
 
@@ -35,7 +35,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 PROB_COLS = [f"prob_{i}" for i in range(NUM_CLASSES)]
 preds = pd.read_csv(
-    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv",
+    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv.gz",
     usecols=["participant_id", "fold", "window_idx", "model",
              "true_label", "pred_label"] + PROB_COLS,
 )

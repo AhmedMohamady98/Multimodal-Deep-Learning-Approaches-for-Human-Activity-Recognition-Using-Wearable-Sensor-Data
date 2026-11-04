@@ -14,18 +14,18 @@
 # ---
 
 # %% [markdown]
-# # Dataset Class Distribution — v3 (16 classes incl. Null)
+# # Dataset Class Distribution — 16 classes incl. Null
 #
 # Derived from the windowed evaluation set: how many 10 s windows fall into
-# each activity class? Crucial for v3 because the windowing fix added the
+# each activity class? Crucial because the windowing fix added the
 # **Null** (background / transition) class — and Null is the most common
 # label by a wide margin, which explains a lot of the "Activity → Null"
 # confusion patterns we see in `confusion/`.
 #
-# Outputs → `results/v3/10s/dataset/`.
+# Outputs → `results/dataset/`.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 import pandas as pd
 import csv
 
@@ -34,7 +34,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 # Use any one model's predictions — true labels are identical across models.
 preds = pd.read_csv(
-    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv",
+    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv.gz",
     usecols=["model", "participant_id", "true_label"],
 )
 preds = preds[preds["model"] == MODEL_CSV_KEYS["GMF"]]   # 43 760 unique windows

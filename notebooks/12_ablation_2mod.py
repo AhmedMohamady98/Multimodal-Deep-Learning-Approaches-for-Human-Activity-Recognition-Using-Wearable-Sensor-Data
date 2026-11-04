@@ -21,13 +21,13 @@
 # or are all the gains coming from IMU + Audio?*
 #
 # Data sources:
-#   - `predictions/all_models_raw_predictions.csv`       (3-modality)
-#   - `predictions/2mod_all_models_raw_predictions.csv`  (IMU + Audio)
+#   - `predictions/all_models_raw_predictions.csv.gz`       (3-modality)
+#   - `predictions/2mod_all_models_raw_predictions.csv.gz`  (IMU + Audio)
 #
-# Outputs → `results/v3/10s/ablation/`.
+# Outputs → `results/ablation/`.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 import pandas as pd
 import csv
 from sklearn.metrics import f1_score, confusion_matrix
@@ -38,11 +38,11 @@ OUT.mkdir(parents=True, exist_ok=True)
 ABLATED = ["Late Fusion", "GMF", "CMA"]   # methods that have a 2-mod variant
 
 p3 = pd.read_csv(
-    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv",
+    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv.gz",
     usecols=["participant_id", "fold", "model", "true_label", "pred_label"],
 )
 p2 = pd.read_csv(
-    RESULTS_DIR / "predictions" / "2mod_all_models_raw_predictions.csv",
+    RESULTS_DIR / "predictions" / "2mod_all_models_raw_predictions.csv.gz",
     usecols=["participant_id", "fold", "model", "true_label", "pred_label"],
 )
 print(f"3-mod rows: {len(p3):,}  ·  2-mod rows: {len(p2):,}")

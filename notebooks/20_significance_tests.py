@@ -31,8 +31,8 @@
 # equivalent, and an exact sign test as the weakest-assumption fallback. Effect
 # sizes accompany every p-value, and families of comparisons are Holm-corrected.
 #
-# Source: `predictions/all_models_raw_predictions.csv`.
-# Outputs → `results/v3/10s/significance/`.
+# Source: `predictions/all_models_raw_predictions.csv.gz`.
+# Outputs → `results/significance/`.
 #
 # > **Tweaking the figures.** Every colour, font size, label and dimension lives
 # > in the single config cell in section 0. Edit it, re-run that cell, then re-run
@@ -40,7 +40,7 @@
 # > the statistics are untouched by anything in the config.
 
 # %%
-# Put the repo root on sys.path so `notebooks.v3._common` resolves regardless of
+# Put the repo root on sys.path so `notebooks._common` resolves regardless of
 # where the kernel starts. Jupyter starts it in this file's directory; running
 # the paired .py from the repo root starts it there. Both work.
 import sys
@@ -48,12 +48,12 @@ from pathlib import Path
 
 _cwd = Path.cwd().resolve()
 for _cand in (_cwd, *_cwd.parents):
-    if (_cand / "notebooks" / "v3" / "_common.py").exists():
+    if (_cand / "notebooks" / "_common.py").exists():
         if str(_cand) not in sys.path:
             sys.path.insert(0, str(_cand))
         break
 
-from notebooks.v3._common import *
+from notebooks._common import *
 import pandas as pd
 from scipy import stats
 from sklearn.metrics import f1_score
@@ -165,7 +165,7 @@ print("Config applied. Re-run the figure cells (sections 7 and 8) to see changes
 
 # %%
 preds = pd.read_csv(
-    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv",
+    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv.gz",
     usecols=["participant_id", "fold", "model", "true_label", "pred_label"],
 )
 

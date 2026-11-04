@@ -4,10 +4,10 @@ Late Fusion 10s evaluation script.
 Loads late_fusion_fold{0,1,2}_best.pt, runs inference, generates comprehensive
 high-quality figures (300 DPI, seaborn ticks, value labels on every bar) and
 tables. Figures compare Late Fusion against unimodal baselines loaded from
-results/v3/10s/unimodal_results.json.
+results/unimodal_results.json.
 
 Output structure:
-    results/v3/10s/figures/late_fusion/
+    results/figures/late_fusion/
     ├── training_curves.png
     ├── per_fold_f1.png
     ├── per_class_f1.png
@@ -19,13 +19,13 @@ Output structure:
     ├── fold1/ ...
     └── fold2/ ...
 
-    results/v3/10s/tables/
+    results/tables/
     ├── late_fusion_summary.csv
     ├── late_fusion_per_fold.csv
     ├── late_fusion_per_class_f1.csv
     └── late_fusion_most_confused.csv
 
-    results/v3/10s/late_fusion_results.json
+    results/late_fusion_results.json
 
 Usage:
     PYTHONPATH=. python jobs/evaluate_late_fusion_10s.py
@@ -57,11 +57,11 @@ from src.fusion.late_fusion import LateFusion
 # ── Config ────────────────────────────────────────────────────────────────────
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-MODELS_DIR     = "results/v3/10s/models"
-FIGURES_DIR    = "results/v3/10s/figures/late_fusion"
-TABLES_DIR     = "results/v3/10s/tables"
-JSON_OUT       = "results/v3/10s/late_fusion_results.json"
-UNIMODAL_JSON  = "results/v3/10s/unimodal_results.json"
+MODELS_DIR     = "results/models"
+FIGURES_DIR    = "results/figures/late_fusion"
+TABLES_DIR     = "results/tables"
+JSON_OUT       = "results/late_fusion_results.json"
+UNIMODAL_JSON  = "results/unimodal_results.json"
 
 WINDOW_SIZE = 500
 STEP        = 250

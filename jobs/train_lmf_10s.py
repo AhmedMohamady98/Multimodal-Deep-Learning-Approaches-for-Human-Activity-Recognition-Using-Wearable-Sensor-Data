@@ -52,7 +52,7 @@ from src.fusion.lmf import LowRankMultimodalFusion
 # ── Config ────────────────────────────────────────────────────────────────────
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-CHECKPOINT_DIR = "results/v3/10s/models"
+CHECKPOINT_DIR = "results/models"
 
 WINDOW_SIZE = 500   # 10s × 50 Hz
 STEP        = 250   # 50% overlap

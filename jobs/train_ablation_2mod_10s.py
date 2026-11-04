@@ -18,8 +18,8 @@ Trains the leakage-free protocol (Option A):
     fold k: train on 18 participants, val on 1, test on the held-out 7
 
 Checkpoints saved to:
-    results/v3/10s/models/{method}_2mod_fold{i}_best.pt   (best weights)
-    results/v3/10s/models/{method}_2mod_fold{i}_resume.pt (full state)
+    results/models/{method}_2mod_fold{i}_best.pt   (best weights)
+    results/models/{method}_2mod_fold{i}_resume.pt (full state)
 
 Usage:
     PYTHONPATH=. python jobs/train_ablation_2mod_10s.py --method late_fusion --fold 0
@@ -47,7 +47,7 @@ from src.encoders.ast.model import ASTEncoder
 # ── Config ────────────────────────────────────────────────────────────────────
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-CHECKPOINT_DIR = "results/v3/10s/models"
+CHECKPOINT_DIR = "results/models"
 
 WINDOW_SIZE = 500    # 10s × 50 Hz
 STEP        = 250    # 50% overlap (matches 3-mod 3-fold CV scripts)

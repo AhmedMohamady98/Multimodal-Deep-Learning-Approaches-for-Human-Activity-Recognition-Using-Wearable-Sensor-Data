@@ -20,10 +20,10 @@
 # struggles with them? And which pairs are confused only by a specific
 # model? Counts are pooled across all 3 folds.
 #
-# Outputs → `results/v3/10s/confusion/`.
+# Outputs → `results/confusion/`.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 import pandas as pd
 import csv
 from sklearn.metrics import confusion_matrix
@@ -32,7 +32,7 @@ OUT = FIGURES_ROOT / "confusion"
 OUT.mkdir(parents=True, exist_ok=True)
 
 preds = pd.read_csv(
-    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv",
+    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv.gz",
     usecols=["model", "true_label", "pred_label"],
 )
 print(f"Loaded {len(preds):,} rows; {preds['model'].nunique()} models")

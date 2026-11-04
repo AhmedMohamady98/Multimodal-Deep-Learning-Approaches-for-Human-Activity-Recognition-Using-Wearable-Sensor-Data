@@ -22,7 +22,7 @@ from src.encoders.tsmixer.model import TSMixerEncoder
 from src.encoders.ast.model import ASTEncoder
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-MODELS_DIR = "results/v3/10s/models"
+MODELS_DIR = "results/models"
 WINDOW_SIZE = 500
 STEP        = 250
 

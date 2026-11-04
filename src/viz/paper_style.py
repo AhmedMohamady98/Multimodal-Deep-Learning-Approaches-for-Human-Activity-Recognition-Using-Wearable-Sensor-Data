@@ -1,5 +1,5 @@
 """
-Figure style for v3 thesis figures.
+Figure style for the thesis figures.
 
 A hybrid look chosen after side-by-side review:
   - Editorial palette for fusion methods (jewel tones: deep teal, mustard,
@@ -16,7 +16,7 @@ Usage:
     apply_paper_style()
     fig, ax = plt.subplots(figsize=(5, 3))
     ...
-    save_fig(fig, "results/v3/10s/fusion/overview/leaderboard")
+    save_fig(fig, "results/fusion/overview/leaderboard")
 """
 
 from __future__ import annotations
@@ -160,7 +160,7 @@ def save_fig(
     fig
         The Figure object.
     path_no_ext
-        Output path WITHOUT extension — e.g. `results/v3/10s/fusion/overview/leaderboard`.
+        Output path WITHOUT extension — e.g. `results/fusion/overview/leaderboard`.
         Parent directory is created automatically.
     formats
         File formats to write. Default = SVG + PDF (both vector, no quality loss).
@@ -228,5 +228,5 @@ if __name__ == "__main__":
     axes[2].set_yticks([])
 
     fig.suptitle("HARMES paper-aligned style — palette preview", y=1.04)
-    save_fig(fig, "results/v3/_style_preview", formats=("svg", "pdf", "png"))
-    print("Wrote results/v3/_style_preview.{svg,pdf,png}")
+    save_fig(fig, "results/_style_preview", formats=("svg", "pdf", "png"))
+    print("Wrote results/_style_preview.{svg,pdf,png}")

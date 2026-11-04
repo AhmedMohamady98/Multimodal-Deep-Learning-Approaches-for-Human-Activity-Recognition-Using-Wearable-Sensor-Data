@@ -10,9 +10,9 @@
 
 module load python/3.11.2
 
-cd ~/multimodal-har-thesis
+cd "${SLURM_SUBMIT_DIR:-.}"
 source .venv/bin/activate
-mkdir -p logs results/v3/10s/lefthander
+mkdir -p logs results/lefthander
 
 echo "Job ID:  $SLURM_JOB_ID"
 echo "Node:    $SLURMD_NODENAME"

@@ -4,8 +4,8 @@ ablation models — Late Fusion / GMF / CMA, all 3 folds.
 
 Mirror of jobs/save_raw_predictions.py but for the 2-mod ablation
 variants. Output goes to:
-  results/v3/10s/predictions/2mod_all_models_raw_predictions.csv
-  results/v3/10s/predictions/{method}_2mod_fold{i}_raw_preds.csv
+  results/predictions/2mod_all_models_raw_predictions.csv.gz
+  results/predictions/{method}_2mod_fold{i}_raw_preds.csv
 
 These CSVs are consumed by the ablation analysis notebooks (humidity
 contribution, 3-mod vs 2-mod comparisons).
@@ -43,8 +43,8 @@ from jobs.train_ablation_2mod_10s import (
 
 ROOT       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-MODELS_DIR = os.path.join(ROOT, "results", "v3", "10s", "models")
-OUT_DIR    = os.path.join(ROOT, "results", "v3", "10s", "predictions")
+MODELS_DIR = os.path.join(ROOT, "results", "models")
+OUT_DIR    = os.path.join(ROOT, "results", "predictions")
 
 BATCH_SIZE  = 64
 NUM_WORKERS = 2
@@ -120,7 +120,7 @@ def main():
     METHODS = sorted(FUSION_CLASSES_2MOD)   # ["cma", "gmf", "late_fusion"]
 
     # Master CSV — every prediction from every 2-mod model across all folds
-    master_path = os.path.join(OUT_DIR, "2mod_all_models_raw_predictions.csv")
+    master_path = os.path.join(OUT_DIR, "2mod_all_models_raw_predictions.csv.gz")
     master_fh   = open(master_path, "w", newline="")
     master_w    = csv.writer(master_fh)
     master_w.writerow(HEADER)

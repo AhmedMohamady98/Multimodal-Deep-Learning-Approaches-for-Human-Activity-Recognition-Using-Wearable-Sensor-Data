@@ -100,10 +100,7 @@ and no overlap for leave-one-participant-out, matching the dataset paper.
 
 Each fold holds out one further participant from the training pool as a
 validation set, so training, validation and test sets are disjoint at the
-participant level and model selection never sees the test fold. This matters:
-an earlier version of these experiments selected checkpoints on the test set,
-which inflated every score by roughly 4 to 7 points. All numbers here come from
-the corrected protocol.
+participant level and model selection never sees the test fold.
 
 ## Citing
 

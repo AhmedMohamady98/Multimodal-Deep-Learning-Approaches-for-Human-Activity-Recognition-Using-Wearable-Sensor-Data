@@ -22,11 +22,11 @@
 # 2. **Bars** — per-method mean ± std across participants (low std = consistent).
 # 3. **Violin** — full F1 distribution per method (shape reveals outliers).
 #
-# Source: `predictions/all_models_raw_predictions.csv`.
-# Outputs → `results/v3/10s/per_participant_consistency/`.
+# Source: `predictions/all_models_raw_predictions.csv.gz`.
+# Outputs → `results/per_participant_consistency/`.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 import pandas as pd
 import csv
 from sklearn.metrics import f1_score
@@ -35,7 +35,7 @@ OUT = FIGURES_ROOT / "per_participant_consistency"
 OUT.mkdir(parents=True, exist_ok=True)
 
 preds = pd.read_csv(
-    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv",
+    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv.gz",
     usecols=["participant_id", "model", "true_label", "pred_label"],
 )
 

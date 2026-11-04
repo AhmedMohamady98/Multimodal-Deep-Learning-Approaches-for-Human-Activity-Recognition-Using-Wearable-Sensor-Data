@@ -14,14 +14,14 @@
 # ---
 
 # %% [markdown]
-# # CMA — v3 (per-method deep dive)
+# # CMA — per-method deep dive
 #
-# All v3 metrics for CMA: per-fold F1, per-class F1, pooled
+# All metrics for CMA: per-fold F1, per-class F1, pooled
 # confusion matrix, per-fold confusion matrices, top confused class pairs.
-# Outputs go to `results/v3/10s/fusion/cma/`.
+# Outputs go to `results/fusion/cma/`.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 import csv
 
 DISPLAY_NAME = "CMA"

@@ -14,14 +14,14 @@
 # ---
 
 # %% [markdown]
-# # {DISPLAY_NAME} — v3 (per-method deep dive)
+# # {DISPLAY_NAME} — per-method deep dive
 #
-# All v3 metrics for {DISPLAY_NAME}: per-fold F1, per-class F1, pooled
+# All metrics for {DISPLAY_NAME}: per-fold F1, per-class F1, pooled
 # confusion matrix, per-fold confusion matrices, top confused class pairs.
-# Outputs go to `results/v3/10s/fusion/{METHOD_KEY}/`.
+# Outputs go to `results/fusion/{METHOD_KEY}/`.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 import csv
 
 DISPLAY_NAME = "{DISPLAY_NAME}"

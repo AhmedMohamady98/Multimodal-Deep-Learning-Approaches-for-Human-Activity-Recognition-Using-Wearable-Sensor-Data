@@ -34,10 +34,10 @@
 #    reachable zero. "Closed" here means small relative to the others, never
 #    literally off.
 #
-# Outputs → `results/v3/10s/gates/`.
+# Outputs → `results/gates/`.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr, wilcoxon
@@ -64,10 +64,10 @@ for g in GATES:
 # true_label sequences to match is a real check that all three sources describe
 # the same windows in the same order, not a formality.
 _cols = ["participant_id", "fold", "model", "true_label", "pred_label"]
-_p3 = pd.read_csv(RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv",
+_p3 = pd.read_csv(RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv.gz",
                   usecols=_cols)
 _p3 = _p3[_p3["model"] == "gmf"].reset_index(drop=True)
-_p2 = pd.read_csv(RESULTS_DIR / "predictions" / "2mod_all_models_raw_predictions.csv",
+_p2 = pd.read_csv(RESULTS_DIR / "predictions" / "2mod_all_models_raw_predictions.csv.gz",
                   usecols=_cols)
 _p2 = _p2[_p2["model"] == "gmf_2mod"].reset_index(drop=True)
 for name, frame in [("3-mod", _p3), ("2-mod", _p2)]:

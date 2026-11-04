@@ -10,9 +10,9 @@
 
 module load python/3.11.2
 
-cd ~/multimodal-har-thesis
+cd "${SLURM_SUBMIT_DIR:-.}"
 source .venv/bin/activate
-mkdir -p logs results/v3/10s/models
+mkdir -p logs results/models
 
 echo "Job ID:  $SLURM_JOB_ID"
 echo "Node:    $SLURMD_NODENAME"
@@ -20,7 +20,7 @@ echo "GPU:     $(nvidia-smi --query-gpu=name --format=csv,noheader)"
 echo "Started: $(date)"
 echo "Window:  10s (500 samples at 50 Hz, 50% overlap)"
 echo "Method:  Late Fusion — concat 384-dim → MLP → 15 classes"
-echo "Init:    Warm-started from results/v3/10s/models/tinyhar/tsmixer/ast_fold*.pt"
+echo "Init:    Warm-started from results/models/tinyhar/tsmixer/ast_fold*.pt"
 echo ""
 
 PYTHONPATH=. python jobs/train_late_fusion_10s.py

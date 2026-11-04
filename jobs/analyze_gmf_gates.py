@@ -21,7 +21,7 @@ No retraining and no change to the model: the checkpoints are loaded exactly
 as the evaluation script loads them.
 
 Output:
-    results/v3/10s/gates/gmf_gate_activations.csv
+    results/gates/gmf_gate_activations.csv
         fold, true_label, pred_label, g_imu, g_audio, g_hum   (one row/window)
 
 Usage:
@@ -48,8 +48,8 @@ from src.fusion.gmf import GatedMultimodalFusion
 # ── Config (mirrors jobs/evaluate_gmf_10s.py) ────────────────────────────────
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-MODELS_DIR  = "results/v3/10s/models"
-OUT_DIR     = "results/v3/10s/gates"
+MODELS_DIR  = "results/models"
+OUT_DIR     = "results/gates"
 OUT_CSV     = os.path.join(OUT_DIR, "gmf_gate_activations.csv")
 
 WINDOW_SIZE = 500
@@ -186,7 +186,7 @@ def main():
     if fold_f1:
         mean, std = float(np.mean(fold_f1)), float(np.std(fold_f1))
         print(f"\nMacro F1 across folds: {mean:.4f} +/- {std:.4f}")
-        print(f"Published v3 GMF value: 0.827")
+        print(f"Published GMF value: 0.827")
         delta = abs(mean - 0.827)
         verdict = ("MATCH — restored AST backbone reproduces the published result"
                    if delta < 0.002 else

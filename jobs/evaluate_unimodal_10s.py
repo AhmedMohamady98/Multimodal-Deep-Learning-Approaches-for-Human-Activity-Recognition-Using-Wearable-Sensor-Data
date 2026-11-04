@@ -1,11 +1,11 @@
 """
-Unimodal 10s evaluation script.
+Unimodal 10s evaluation.
 
-Mirrors evaluate_unimodal_8s.py exactly but for 10-second window models.
-Loads checkpoints from results/v3/10s/models/, outputs to results/v3/10s/.
+Evaluates the three unimodal baselines (TinyHAR on IMU, AST on audio,
+TSMixer on humidity) across the three cross-validation folds.
 
 Output structure:
-    results/v3/10s/figures/
+    results/figures/
     ├── tinyhar/
     │   ├── training_curves.png
     │   ├── confusion_matrix.png
@@ -21,7 +21,7 @@ Output structure:
     ├── class_distribution.png
     └── convergence_comparison.png
 
-    results/v3/10s/tables/
+    results/tables/
     ├── unimodal_summary.csv
     ├── per_fold_results.csv
     ├── per_class_f1.csv
@@ -31,7 +31,7 @@ Output structure:
     ├── mcnemar_tests.csv
     └── most_confused_pairs.csv
 
-    results/v3/10s/unimodal_results.json
+    results/unimodal_results.json
 
 Usage:
     PYTHONPATH=. python jobs/evaluate_unimodal_10s.py
@@ -52,7 +52,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from torch.utils.data import DataLoader
 from sklearn.metrics import (f1_score, accuracy_score, confusion_matrix)
-from scipy.stats import chi2_contingency
 
 from src.data.dataset import HARMESDataset, NUM_CLASSES, ID_TO_ACTIVITY
 from src.data.splits import get_3fold_splits
@@ -63,10 +62,10 @@ from src.encoders.ast.model import ASTEncoder
 # ── Config ────────────────────────────────────────────────────────────────────
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-MODELS_DIR  = "results/v3/10s/models"
-FIGURES_DIR = "results/v3/10s/figures"
-TABLES_DIR  = "results/v3/10s/tables"
-JSON_OUT    = "results/v3/10s/unimodal_results.json"
+MODELS_DIR  = "results/unimodal_models"
+FIGURES_DIR = "results/figures"
+TABLES_DIR  = "results/tables"
+JSON_OUT    = "results/unimodal_results.json"
 
 # 10-second window parameters
 WINDOW_SIZE = 500   # 10s × 50 Hz
@@ -139,7 +138,6 @@ def make_model(name):
         return UnimodalModel(TinyHAREncoder(in_channels=12, embed_dim=embed_dim),
                              embed_dim, NUM_CLASSES), "imu"
     elif name == "TSMixer":
-        # seq_len must match 8s window size
         return UnimodalModel(TSMixerEncoder(seq_len=WINDOW_SIZE, in_channels=1,
                                             embed_dim=embed_dim),
                              embed_dim, NUM_CLASSES), "humidity"
@@ -177,6 +175,12 @@ def run_inference(model, loader, device, modality):
 
 
 def evaluate_model(name, splits, device):
+    """
+    Evaluate a specific model across all provided cross-validation folds.
+    Loads best checkpoints, runs inference on test sets, and computes
+    comprehensive metrics including F1-score and confusion matrices.
+    Returns a list of per-fold result dictionaries and the aggregate confusion matrix.
+    """
     tag      = MODEL_TAGS[name]
     modality = {"TinyHAR": "imu", "TSMixer": "humidity", "AST": "audio"}[name]
 
@@ -184,7 +188,7 @@ def evaluate_model(name, splits, device):
     cm_sum       = np.zeros((NUM_CLASSES, NUM_CLASSES), dtype=int)
 
     for fold_idx, fold in enumerate(splits):
-        ckpt = os.path.join(MODELS_DIR, f"{tag}_fold{fold_idx}.pt")
+        ckpt = os.path.join(MODELS_DIR, f"{tag}_{modality}_fold{fold_idx}.pt")
         if not os.path.exists(ckpt):
             print(f"  ⚠️  Missing: {ckpt} — skipping fold {fold_idx}")
             continue
@@ -193,7 +197,6 @@ def evaluate_model(name, splits, device):
         model.load_state_dict(torch.load(ckpt, map_location=device))
         model = model.to(device)
 
-        # Use 8s window size for dataset loading
         test_ds     = HARMESDataset(fold["test"], DATA_DIR,
                                     window_size=WINDOW_SIZE, step=STEP)
         test_loader = DataLoader(test_ds, batch_size=64, shuffle=False,
@@ -386,6 +389,12 @@ def write_csv(path, rows, fieldnames):
 
 
 def save_tables(results_data, cm_data, log_data, dataset_stats):
+    """
+    Generate and save summary CSV tables for the experimental results.
+    Processes evaluation metrics, confusion matrices, and training logs to 
+    produce summary, per-fold, and per-class analysis files in the tables directory.
+    This function writes directly to disk and does not return a value.
+    """
     os.makedirs(TABLES_DIR, exist_ok=True)
 
     # 1. Summary
@@ -529,7 +538,7 @@ def _save(fig, directory, filename):
 
 def fig_training_curves(fold_dict, name, out_dir):
     fig, (ax_loss, ax_f1) = plt.subplots(1, 2, figsize=(12, 4))
-    fig.suptitle(f"{name} (8s) — Training Curves", fontweight="bold")
+    fig.suptitle(f"{name} (10s) — Training Curves", fontweight="bold")
     for fold_idx, fold_info in fold_dict.items():
         epochs = fold_info["epochs"]
         if not epochs: continue
@@ -561,7 +570,7 @@ def fig_confusion_matrix(cm, name, out_dir, title_suffix=""):
                 annot=True, fmt=".2f", annot_kws={"size": 7},
                 linewidths=0.4, linecolor="lightgray",
                 cbar_kws={"shrink": 0.8, "label": "Recall"})
-    ax.set_title(f"{name} (8s) — Confusion Matrix{title_suffix}", fontweight="bold")
+    ax.set_title(f"{name} (10s) — Confusion Matrix{title_suffix}", fontweight="bold")
     ax.set_xlabel("Predicted Activity"); ax.set_ylabel("True Activity")
     ax.tick_params(axis="x", rotation=45, labelsize=8)
     ax.tick_params(axis="y", rotation=0,  labelsize=8)
@@ -589,7 +598,7 @@ def fig_per_class_f1(means, stds, name, out_dir, title_suffix="", color=None):
     ax.set_xticks(xs)
     ax.set_xticklabels(SHORT_NAMES, rotation=45, ha="right", fontsize=9)
     ax.set_ylabel("F1 Score"); ax.set_ylim(0, 1.25)
-    ax.set_title(f"{name} (8s) — Per-Class F1{title_suffix}", fontweight="bold")
+    ax.set_title(f"{name} (10s) — Per-Class F1{title_suffix}", fontweight="bold")
     ax.legend(fontsize=9); ax.grid(axis="y", alpha=0.3)
     plt.tight_layout()
     _save(fig, out_dir, "per_class_f1.png")
@@ -716,13 +725,14 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Device: {device}")
     print(f"Window: {WINDOW_SIZE} samples = {WINDOW_SIZE/50:.0f}s  |  "
-          f"Step: {STEP} samples (50% overlap)\n")
+          f"Step: {STEP} samples (50% overlap)")
+    print(f"NOTE: AST audio resampled 44.1kHz → 16kHz\n")
 
     splits = get_3fold_splits(list(range(1, 21)))
 
     # ── 1. Run inference ──────────────────────────────────────────────────────
     print("=" * 60)
-    print("Running inference from 8s checkpoints...")
+    print("Running inference from 10s checkpoints...")
     print("=" * 60)
     results_data, cm_data = {}, {}
     for name in ["TinyHAR", "TSMixer", "AST"]:
@@ -764,7 +774,7 @@ def main():
 
     # ── 3. Dataset statistics ─────────────────────────────────────────────────
     print("\n" + "=" * 60)
-    print("Computing dataset statistics (8s windows)...")
+    print("Computing dataset statistics (10s windows)...")
     print("=" * 60)
     dataset_stats = compute_dataset_stats(splits)
     print(f"  Done — {len(dataset_stats)} rows")
@@ -814,7 +824,8 @@ def main():
 
     # ── 6. Summary ────────────────────────────────────────────────────────────
     print("\n" + "=" * 60)
-    print("10s UNIMODAL RESULTS SUMMARY (20 participants, 3-fold CV)")
+    print("10s UNIMODAL RESULTS SUMMARY")
+    print("(20 participants, 3-fold group CV)")
     print("=" * 60)
     print(f"{'Model':<12} {'Macro F1':>10} {'± std':>8} {'Accuracy':>10}")
     print("-" * 45)

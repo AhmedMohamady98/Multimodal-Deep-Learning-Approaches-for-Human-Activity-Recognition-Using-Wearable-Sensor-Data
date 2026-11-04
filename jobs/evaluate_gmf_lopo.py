@@ -3,8 +3,8 @@ Evaluate all 20 LOPO checkpoints and aggregate results.
 
 Loads lopo_pXX_best.pt for each participant, runs inference on that
 participant's windows (10s, no overlap), and saves:
-  - results/v3/10s/lopo/lopo_results.json   — per-participant metrics
-  - results/v3/10s/lopo/lopo_summary.csv    — summary table for thesis
+  - results/lopo/lopo_results.json   — per-participant metrics
+  - results/lopo/lopo_summary.csv    — summary table for thesis
 
 Usage:
     PYTHONPATH=. python jobs/evaluate_gmf_lopo.py
@@ -28,8 +28,8 @@ from src.fusion.gmf import GatedMultimodalFusion
 # ── Config ─────────────────────────────────────────────────────────────────────
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-CHECKPOINT_DIR = "results/v3/10s/lopo/models"
-OUT_DIR        = "results/v3/10s/lopo"
+CHECKPOINT_DIR = "results/lopo/models"
+OUT_DIR        = "results/lopo"
 
 WINDOW_SIZE = 500   # 10s @ 50 Hz
 STEP        = 500   # no overlap

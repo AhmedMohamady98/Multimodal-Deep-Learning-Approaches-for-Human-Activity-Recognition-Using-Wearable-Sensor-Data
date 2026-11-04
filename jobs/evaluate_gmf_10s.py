@@ -57,12 +57,12 @@ from src.fusion.gmf import GatedMultimodalFusion
 # ── Config ────────────────────────────────────────────────────────────────────
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-MODELS_DIR     = "results/v3/10s/models"
-FIGURES_DIR    = "results/v3/10s/figures/gmf"
-TABLES_DIR     = "results/v3/10s/tables"
-JSON_OUT       = "results/v3/10s/gmf_results.json"
-UNIMODAL_JSON  = "results/v3/10s/unimodal_results.json"
-LF_JSON        = "results/v3/10s/late_fusion_results.json"
+MODELS_DIR     = "results/models"
+FIGURES_DIR    = "results/figures/gmf"
+TABLES_DIR     = "results/tables"
+JSON_OUT       = "results/gmf_results.json"
+UNIMODAL_JSON  = "results/unimodal_results.json"
+LF_JSON        = "results/late_fusion_results.json"
 
 WINDOW_SIZE = 500
 STEP        = 250

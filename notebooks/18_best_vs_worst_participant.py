@@ -20,10 +20,10 @@
 # compares them head-to-head: per-class F1 deltas, confusion-matrix diffs,
 # and the activities where the gap is widest.
 #
-# Outputs → `results/v3/10s/lefthander/best_vs_worst/`.
+# Outputs → `results/lefthander/best_vs_worst/`.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 import json, csv
 
 LEFT_HANDERS = {7, 10, 14}

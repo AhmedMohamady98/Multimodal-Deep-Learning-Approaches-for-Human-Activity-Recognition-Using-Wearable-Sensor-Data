@@ -14,16 +14,16 @@
 # ---
 
 # %% [markdown]
-# # Unimodal Baselines — v3 (leakage-free, 16 classes incl. Null)
+# # Unimodal Baselines — leakage-free, 16 classes incl. Null
 #
 # Compares the three single-modality encoders evaluated on the same 3-fold
-# protocol used for fusion. Outputs go to `results/v3/10s/unimodal/`.
+# protocol used for fusion. Outputs go to `results/unimodal/`.
 #
 # Each model is paired with its modality color (paper Fig 5 convention):
 # IMU = warm yellow, Audio = green-teal, Humidity = soft blue.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 
 OUT = FIGURES_ROOT / "unimodal"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -153,7 +153,7 @@ for model in UNIMODAL_MODELS:
     plt.tight_layout()
     save_fig(fig, OUT / f"cm_{model.lower()}")
     plt.close(fig)
-    print(f"  Saved  results/v3/10s/unimodal/cm_{model.lower()}.pdf")
+    print(f"  Saved  results/unimodal/cm_{model.lower()}.pdf")
 
 # %% [markdown]
 # ## 6 · Summary table

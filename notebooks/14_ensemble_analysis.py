@@ -20,10 +20,10 @@
 # of the K best-performing fusion methods, per window, and check whether
 # the ensemble beats the single best model (GMF).
 #
-# Outputs → `results/v3/10s/ensemble/`.
+# Outputs → `results/ensemble/`.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 import pandas as pd
 import csv
 from sklearn.metrics import f1_score
@@ -33,7 +33,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 PROB_COLS = [f"prob_{i}" for i in range(NUM_CLASSES)]
 preds = pd.read_csv(
-    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv",
+    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv.gz",
     usecols=["model", "participant_id", "fold", "window_idx",
              "true_label"] + PROB_COLS,
 )

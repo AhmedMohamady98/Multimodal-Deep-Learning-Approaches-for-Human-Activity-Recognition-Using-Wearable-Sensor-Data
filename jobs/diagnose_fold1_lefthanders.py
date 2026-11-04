@@ -14,7 +14,7 @@ Key comparisons produced:
   4. Summary ranking: which model minimises the left-hander gap
 
 Output:
-  results/v3/10s/lefthander/
+  results/lefthander/
   ├── per_participant_all_models.csv
   ├── lefthander_gap_summary.csv
   ├── p10_per_class.csv
@@ -57,8 +57,8 @@ from src.fusion.lmf import LowRankMultimodalFusion
 # ── Config ────────────────────────────────────────────────────────────────────
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-MODELS_DIR  = "results/v3/10s/models"
-OUT_DIR     = "results/v3/10s/lefthander"
+MODELS_DIR  = "results/models"
+OUT_DIR     = "results/lefthander"
 
 WINDOW_SIZE = 500
 STEP        = 250

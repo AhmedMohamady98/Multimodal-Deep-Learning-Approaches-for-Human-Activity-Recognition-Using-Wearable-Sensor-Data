@@ -1,5 +1,5 @@
 """
-HARMES dataset loader and windowing pipeline (v3 — bug-fixed).
+HARMES dataset loader and windowing pipeline.
 
 Each item returned: (imu, audio, humidity, label)
   imu:      torch.float32  (window_size, 12)
@@ -7,8 +7,8 @@ Each item returned: (imu, audio, humidity, label)
   humidity: torch.float32  (window_size, 1)
   label:    torch.long     scalar in [0, NUM_CLASSES-1]
 
-CHANGES vs v2 (May 2026 bug fix — supervisor-flagged):
-  1. Windows are now created over the ENTIRE recording timeline, not only over
+Windowing design:
+  1. Windows are created over the ENTIRE recording timeline, not only over
      labeled activity segments. This is required for the model to learn a
      continuous-stream classifier rather than a closed-set highlight-reel one.
   2. A "Null" class (ID 15, NUM_CLASSES = 16) represents periods between

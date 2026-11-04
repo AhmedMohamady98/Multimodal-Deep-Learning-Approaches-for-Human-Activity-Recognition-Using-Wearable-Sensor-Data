@@ -13,7 +13,7 @@ participant's held-out windows (10s, no overlap), and saves per-window:
   - prob_class_00 … prob_class_15 : float (softmax probabilities, 16 classes)
 
 Output:
-  results/v3/10s/lopo/lopo_raw_predictions.csv   (~16k rows)
+  results/lopo/lopo_raw_predictions.csv.gz   (~16k rows)
 
 Usage:
     PYTHONPATH=. python jobs/save_lopo_predictions.py
@@ -36,9 +36,9 @@ from src.fusion.gmf import GatedMultimodalFusion
 # ── Config ─────────────────────────────────────────────────────────────────────
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-CHECKPOINT_DIR = "results/v3/10s/lopo/models"
-OUT_DIR        = "results/v3/10s/lopo"
-OUT_CSV        = os.path.join(OUT_DIR, "lopo_raw_predictions.csv")
+CHECKPOINT_DIR = "results/lopo/models"
+OUT_DIR        = "results/lopo"
+OUT_CSV        = os.path.join(OUT_DIR, "lopo_raw_predictions.csv.gz")
 
 WINDOW_SIZE = 500   # 10s @ 50 Hz
 STEP        = 500   # no overlap

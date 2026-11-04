@@ -9,7 +9,7 @@ Each output is a real .py file (jupytext-paired with .ipynb after conversion):
     08_decision_fusion_analysis.py
     09_cls_transformer_analysis.py
 
-Run: PYTHONPATH=. python notebooks/v3/_build_per_method.py
+Run: PYTHONPATH=. python notebooks/_build_per_method.py
 """
 
 import subprocess

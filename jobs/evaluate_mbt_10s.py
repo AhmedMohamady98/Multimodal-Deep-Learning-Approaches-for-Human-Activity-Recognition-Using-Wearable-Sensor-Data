@@ -5,8 +5,8 @@ Loads mbt_fold{0,1,2}_best.pt, runs inference, generates comprehensive
 high-quality figures (300 DPI, seaborn ticks, value labels on every bar) and
 tables. Figures compare MBT against unimodal baselines, Late Fusion, and GMF.
 
-Note: MBT fold 0/1 logs may be in ~/logs/ (pre-fix runs 11592253/11592254)
-      while fold 2 logs are in ~/multimodal-har-thesis/logs/.
+Note: training logs are read from logs/ under the repository root, with
+      ~/logs/ as a fallback.
 
 Output structure:
     results/mbt/figures/
@@ -63,13 +63,13 @@ from src.fusion.mbt import MultimodalBottleneckTransformer
 # ── Config ────────────────────────────────────────────────────────────────────
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-MODELS_DIR     = "results/v3/10s/models"
-FIGURES_DIR    = "results/v3/10s/figures/mbt"
-TABLES_DIR     = "results/v3/10s/tables"
-JSON_OUT       = "results/v3/10s/mbt_results.json"
-UNIMODAL_JSON  = "results/v3/10s/unimodal_results.json"
-LF_JSON        = "results/v3/10s/late_fusion_results.json"
-GMF_JSON       = "results/v3/10s/gmf_results.json"
+MODELS_DIR     = "results/models"
+FIGURES_DIR    = "results/figures/mbt"
+TABLES_DIR     = "results/tables"
+JSON_OUT       = "results/mbt_results.json"
+UNIMODAL_JSON  = "results/unimodal_results.json"
+LF_JSON        = "results/late_fusion_results.json"
+GMF_JSON       = "results/gmf_results.json"
 
 WINDOW_SIZE = 500
 STEP        = 250
@@ -196,8 +196,8 @@ def evaluate_all_folds(splits, device):
 # ── Log parsing ───────────────────────────────────────────────────────────────
 
 def parse_fold_log(fold_idx):
-    """Try both log directories — MBT fold 0/1 ran before the absolute-path fix."""
-    # Prefer multimodal-har-thesis/logs/ first, then fall back to ~/logs/
+    """Try both log directories."""
+    # Prefer the repository-relative logs/, then fall back to ~/logs/
     patterns = [
         f"logs/mbt_10s_fold{fold_idx}_*.out",           # project-relative (absolute-path jobs)
         os.path.expanduser(f"~/logs/mbt_10s_fold{fold_idx}_*.out"),  # home-dir fallback

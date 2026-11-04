@@ -4,7 +4,7 @@ Train TinyHAR (IMU) + TSMixer (Humidity) at 10-second windows.
 10s = 500 samples at 50 Hz, 50% overlap (step=250).
 AudioSet clips are 10s → AST spectrogram fills 100% at this window size.
 
-Results saved to: results/v3/10s/unimodal_models/
+Results saved to: results/unimodal_models/
 Compare with:     results/8s/models/  and  results/models/
 """
 
@@ -21,7 +21,7 @@ from src.encoders.tsmixer.model import TSMixerEncoder
 from src.training.trainer import train_model
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-RESULTS_DIR = "results/v3/10s/unimodal_models"
+RESULTS_DIR = "results/unimodal_models"
 BATCH_SIZE  = 64
 EMBED_DIM   = 128
 NUM_WORKERS = 4
@@ -189,7 +189,7 @@ def main():
     train_tsmixer(splits, device)
 
     print("\n" + "═" * 70)
-    print("  All done — checkpoints in results/v3/10s/unimodal_models/")
+    print("  All done — checkpoints in results/unimodal_models/")
     print("═" * 70)
 
 

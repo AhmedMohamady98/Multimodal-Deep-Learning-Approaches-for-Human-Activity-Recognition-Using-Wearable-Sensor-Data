@@ -17,9 +17,9 @@ module load python/3.11.2
 export HF_HOME="$HOME/hf_cache"
 export HF_HUB_OFFLINE=1          # weights are already cached; never hit the network
 
-cd ~/multimodal-har-thesis
+cd "${SLURM_SUBMIT_DIR:-.}"
 source .venv/bin/activate
-mkdir -p logs results/v3/10s/gates
+mkdir -p logs results/gates
 
 echo "Job ID:  $SLURM_JOB_ID"
 echo "Node:    $SLURMD_NODENAME"

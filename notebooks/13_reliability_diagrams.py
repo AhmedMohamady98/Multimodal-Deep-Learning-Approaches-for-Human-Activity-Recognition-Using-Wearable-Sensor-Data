@@ -23,13 +23,13 @@
 # **Expected Calibration Error (ECE):** weighted mean |confidence − accuracy|
 # across 10 equal-width bins. Lower ECE = better calibrated.
 #
-# Data: `predictions/all_models_raw_predictions.csv` (full softmax for all
+# Data: `predictions/all_models_raw_predictions.csv.gz` (full softmax for all
 # 16 classes per window).
 #
-# Outputs → `results/v3/10s/calibration/`.
+# Outputs → `results/calibration/`.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 import pandas as pd
 import csv
 
@@ -38,7 +38,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 PROB_COLS = [f"prob_{i}" for i in range(NUM_CLASSES)]
 preds = pd.read_csv(
-    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv",
+    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv.gz",
     usecols=["model", "true_label", "pred_label"] + PROB_COLS,
 )
 preds["max_prob"] = preds[PROB_COLS].max(axis=1)

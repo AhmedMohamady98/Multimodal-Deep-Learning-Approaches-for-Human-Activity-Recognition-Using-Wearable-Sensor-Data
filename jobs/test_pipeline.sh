@@ -11,7 +11,7 @@
 # ── Environment ───────────────────────────────────────────────────────────────
 module load python/3.11.2
 
-cd ~/multimodal-har-thesis
+cd "${SLURM_SUBMIT_DIR:-.}"
 source .venv/bin/activate
 
 mkdir -p logs

@@ -14,18 +14,18 @@
 # ---
 
 # %% [markdown]
-# # LOPO Analysis — GMF, 20 participants, v3 (leakage-free)
+# # LOPO Analysis — GMF, 20 participants, leakage-free
 #
 # Leave-One-Participant-Out cross-validation: 20 folds, each with 18 train +
 # 1 val + 1 test. Matches the HARMES paper's main evaluation protocol.
-# Outputs go to `results/v3/10s/lopo/`.
+# Outputs go to `results/lopo/`.
 #
 # Left-handed participants (paper Table 2): **P07, P10, P14**. We highlight
 # them throughout — they are the population the HARMES paper showed audio
 # rescues most.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 import json, csv
 import pandas as pd
 
@@ -170,7 +170,7 @@ print(f"  worst: P{worst['participant']:02d}  F1={worst['macro_f1']:.4f}  "
 # ## 6 · Confidence distribution from raw predictions (calibration teaser)
 
 # %%
-preds = pd.read_csv(RESULTS_DIR / "lopo" / "lopo_raw_predictions.csv")
+preds = pd.read_csv(RESULTS_DIR / "lopo" / "lopo_raw_predictions.csv.gz")
 prob_cols = [c for c in preds.columns if c.startswith("prob_class_")]
 preds["max_prob"] = preds[prob_cols].max(axis=1)
 preds["correct"] = preds["correct"].astype(int)

@@ -14,17 +14,17 @@
 # ---
 
 # %% [markdown]
-# # Fusion Overview — v3 (leakage-free, 16 classes incl. Null)
+# # Fusion Overview — leakage-free, 16 classes incl. Null
 #
 # All 7 fusion methods evaluated on the 3-fold protocol. Numbers and figures
-# match the v3 thesis chapter. Activity labels follow the HARMES dataset
+# match the thesis chapter. Activity labels follow the HARMES dataset
 # paper Table 3 wording (e.g. "Apply hand cream", "Cleaning out dishwasher",
 # "Brushing Teeth").
 #
-# Outputs go to `results/v3/10s/fusion/overview/`.
+# Outputs go to `results/fusion/overview/`.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 
 OUT = FIGURES_ROOT / "fusion" / "overview"
 OUT.mkdir(parents=True, exist_ok=True)

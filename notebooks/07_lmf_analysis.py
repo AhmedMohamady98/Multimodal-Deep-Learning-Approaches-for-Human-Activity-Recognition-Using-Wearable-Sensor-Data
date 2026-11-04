@@ -14,14 +14,14 @@
 # ---
 
 # %% [markdown]
-# # LMF — v3 (per-method deep dive)
+# # LMF — per-method deep dive
 #
-# All v3 metrics for LMF: per-fold F1, per-class F1, pooled
+# All metrics for LMF: per-fold F1, per-class F1, pooled
 # confusion matrix, per-fold confusion matrices, top confused class pairs.
-# Outputs go to `results/v3/10s/fusion/lmf/`.
+# Outputs go to `results/fusion/lmf/`.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 import csv
 
 DISPLAY_NAME = "LMF"

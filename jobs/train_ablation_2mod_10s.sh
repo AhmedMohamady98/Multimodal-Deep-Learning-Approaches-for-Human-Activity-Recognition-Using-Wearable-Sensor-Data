@@ -30,9 +30,9 @@
 
 module load python/3.11.2
 
-cd ~/multimodal-har-thesis
+cd "${SLURM_SUBMIT_DIR:-.}"
 source .venv/bin/activate
-mkdir -p logs results/v3/10s/models
+mkdir -p logs results/models
 
 TASK=$SLURM_ARRAY_TASK_ID
 METHODS=(late_fusion gmf cma)

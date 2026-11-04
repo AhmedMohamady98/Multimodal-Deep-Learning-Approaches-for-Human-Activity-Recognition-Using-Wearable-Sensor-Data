@@ -27,8 +27,7 @@ def get_3fold_splits(
 
     ⚠️ DEPRECATED for new training scripts: using `test` for early stopping
     causes data leakage. Use `get_3fold_splits_with_val()` instead.
-    Kept only for compatibility with v1/v2 analysis scripts that read
-    historical results.
+    Kept for reference only; not used by any script in this repository.
     """
     if participant_ids is None:
         participant_ids = list(range(1, 21))

@@ -1,10 +1,10 @@
-"""Shared helpers for every v3 notebook.
+"""Shared helpers for every notebook.
 
 Import everything from here so notebook cells stay focused on the figures:
 
-    from notebooks.v3._common import *
+    from notebooks._common import *
 
-Loads JSONs from `results/v3/10s/`, applies the paper-aligned style,
+Loads JSONs from `results/`, applies the paper-aligned style,
 exports activity labels in paper wording.
 """
 
@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Make sure `src` is importable regardless of where the notebook is run from.
-_REPO_ROOT = Path(__file__).resolve().parents[2]
+_REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
@@ -43,8 +43,8 @@ apply_paper_style()
 
 
 # ── Paths ────────────────────────────────────────────────────────────────────
-RESULTS_DIR = _REPO_ROOT / "results" / "v3" / "10s"
-FIGURES_ROOT = RESULTS_DIR    # figures go inside results/v3/10s/<topic>/
+RESULTS_DIR = _REPO_ROOT / "results"
+FIGURES_ROOT = RESULTS_DIR    # figures go inside results/<topic>/
 TABLES_ROOT  = RESULTS_DIR    # tables alongside figures in the same topic folder
 
 
@@ -63,7 +63,7 @@ UNIMODAL_MODELS = ["TinyHAR", "AST", "TSMixer"]
 UNIMODAL_MODALITY = {"TinyHAR": "IMU", "AST": "Audio", "TSMixer": "Humidity"}
 
 # Display name → key as it appears in the prediction CSV `model` column.
-# Used by every notebook that loads `predictions/all_models_raw_predictions.csv`.
+# Used by every notebook that loads `predictions/all_models_raw_predictions.csv.gz`.
 MODEL_CSV_KEYS: dict[str, str] = {
     "TinyHAR":         "tinyhar",
     "AST":             "ast",
@@ -95,7 +95,7 @@ def load_fusion_results(method_key: str) -> list[dict]:
     if not path.exists():
         raise FileNotFoundError(
             f"Missing {path}. "
-            f"Run the cluster eval and pull v3 JSONs (rsync omni:multimodal-har-thesis/results/v3/10s/*.json results/v3/10s/)."
+            f"Run the evaluation jobs in jobs/ and place the resulting JSONs in results/."
         )
     return json.loads(path.read_text())
 
@@ -154,7 +154,7 @@ def annotate_axis_baseline(ax, value: float, label: str, *, ls="--", color="#888
 def legend_outside_right(ax, *, title=None, **kw):
     """Place the legend vertically OUTSIDE the right edge of the plot area.
 
-    Rule across all v3 figures: legends never overlap data — they sit in
+    Rule across all figures: legends never overlap data — they sit in
     their own column to the right of the axes.
     """
     return ax.legend(

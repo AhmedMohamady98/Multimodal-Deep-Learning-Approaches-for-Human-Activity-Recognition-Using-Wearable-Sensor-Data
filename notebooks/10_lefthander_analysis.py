@@ -14,19 +14,19 @@
 # ---
 
 # %% [markdown]
-# # Left-hander Analysis — v3 (10 models × 20 participants)
+# # Left-hander Analysis — 10 models × 20 participants
 #
 # Three confirmed left-handers (HARMES paper Table 2): **P07, P10, P14**.
 # This notebook isolates how each modality/fusion method generalises to
 # left-handed users, since the dominant-hand IMU is on the opposite wrist.
 #
-# Data source: `results/v3/10s/predictions/all_models_raw_predictions.csv`
+# Data source: `results/predictions/all_models_raw_predictions.csv.gz`
 # (3-mod predictions, 437 600 rows = 43 760 windows × 10 models).
 #
-# Outputs → `results/v3/10s/lefthander/`.
+# Outputs → `results/lefthander/`.
 
 # %%
-from notebooks.v3._common import *
+from notebooks._common import *
 import pandas as pd
 import csv
 from sklearn.metrics import f1_score
@@ -35,7 +35,7 @@ OUT = FIGURES_ROOT / "lefthander"
 OUT.mkdir(parents=True, exist_ok=True)
 
 preds = pd.read_csv(
-    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv",
+    RESULTS_DIR / "predictions" / "all_models_raw_predictions.csv.gz",
     usecols=["participant_id", "fold", "model", "true_label",
              "pred_label", "correct"],
 )

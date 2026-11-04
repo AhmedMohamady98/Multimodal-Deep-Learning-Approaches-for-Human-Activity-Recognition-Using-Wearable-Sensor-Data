@@ -61,15 +61,15 @@ from src.fusion.lmf import LowRankMultimodalFusion
 # ── Config ────────────────────────────────────────────────────────────────────
 
 DATA_DIR = os.environ.get("HARMES_DATA", "data/harmes")
-MODELS_DIR     = "results/v3/10s/models"
-FIGURES_DIR    = "results/v3/10s/figures/lmf"
-TABLES_DIR     = "results/v3/10s/tables"
-JSON_OUT       = "results/v3/10s/lmf_results.json"
-UNIMODAL_JSON  = "results/v3/10s/unimodal_results.json"
-LF_JSON        = "results/v3/10s/late_fusion_results.json"
-GMF_JSON       = "results/v3/10s/gmf_results.json"
-MBT_JSON       = "results/v3/10s/mbt_results.json"
-CMA_JSON       = "results/v3/10s/cma_results.json"
+MODELS_DIR     = "results/models"
+FIGURES_DIR    = "results/figures/lmf"
+TABLES_DIR     = "results/tables"
+JSON_OUT       = "results/lmf_results.json"
+UNIMODAL_JSON  = "results/unimodal_results.json"
+LF_JSON        = "results/late_fusion_results.json"
+GMF_JSON       = "results/gmf_results.json"
+MBT_JSON       = "results/mbt_results.json"
+CMA_JSON       = "results/cma_results.json"
 
 WINDOW_SIZE = 500
 STEP        = 250
